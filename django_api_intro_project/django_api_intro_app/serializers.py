@@ -20,7 +20,7 @@ class CourseSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'instructor']
 
 class GradeSerializer(serializers.ModelSerializer):
-    letter_grade = serializers.SerializerMethodField()
+    # letter_grade = serializers.SerializerMethodField()
     # this is us defining our own field, and it will look for a function to populate it, which we make down below
     #we're creating a field that doesn't exist on the model
 
@@ -28,17 +28,17 @@ class GradeSerializer(serializers.ModelSerializer):
         model = Grade
         fields = ['id', 'score', 'course', 'student', 'letter_grade']
 
-    def get_letter_grade(self, obj):
-            if (obj.score >= 90):
-                return 'A'
-            elif (obj.score >= 80):
-                return 'B'
-            elif (obj.score >= 70):
-                return 'C'
-            elif (obj.score >= 60):
-                return 'D'
-            else:
-                return 'F'
+    # def get_letter_grade(self, obj):
+    #         if (obj.score >= 90):
+    #             return 'A'
+    #         elif (obj.score >= 80):
+    #             return 'B'
+    #         elif (obj.score >= 70):
+    #             return 'C'
+    #         elif (obj.score >= 60):
+    #             return 'D'
+    #         else:
+    #             return 'F'
 
 
 

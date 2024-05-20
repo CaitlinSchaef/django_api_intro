@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+from rest_framework.response import Response
 
 
 from .models import *
@@ -25,6 +26,27 @@ class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
 
+
 class GradeViewSet(viewsets.ModelViewSet):
     queryset = Grade.objects.all()
     serializer_class = GradeSerializer
+
+    def retrieve(self, request, pk=None):
+         grade = Grade.objects.get(pk=pk)
+         grade_serializer = GradeSerializer(grade)
+         #every serializer has a .data attached
+         data = grade_serializer.data
+         data['letter_grade'] = get_letter_grade(grade)
+         return Response(data)
+
+def get_letter_grade(obj):
+            if (obj.score >= 90):
+                return 'A'
+            elif (obj.score >= 80):
+                return 'B'
+            elif (obj.score >= 70):
+                return 'C'
+            elif (obj.score >= 60):
+                return 'D'
+            else:
+                return 'F'
