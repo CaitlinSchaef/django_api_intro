@@ -26,27 +26,27 @@ router = routers.DefaultRouter
 #default from rest framework
 
 
-from django.contrib import admin
+# from django.contrib import admin
 from django.urls import path
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-]
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+# ]
 
 
 
 #now register endpoints/viewsets
 
-# router.register(r'students', StudentViewSet)
-# router.register(r'instructors', InstructorViewSet)
-# router.register(r'courses', CourseViewSet)
-# router.register(r'grades', GradeViewSet)
+router.register(r'students', StudentViewSet)
+router.register(r'instructors', InstructorViewSet)
+router.register(r'courses', CourseViewSet)
+router.register(r'grades', GradeViewSet)
 #you connect the viewpoint to the student, so if they hit students in their URL it connects it
 
 #making a path and then we're making it include all of the paths in the router
-# urlpatterns = [
-#  path('', include(router.urls))   
-# ]
+urlpatterns = [
+ path('', include(router.urls))
+]
 
 """
     Get
