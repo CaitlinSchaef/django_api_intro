@@ -18,11 +18,11 @@ Including another URLconf
 from rest_framework import routers
 from django.urls import path, include
 
-from django_api_intro_app.views import * 
+from django_api_intro_app.views import InstructorViewSet, StudentViewSet, CourseViewSet, GradeViewSet
 #giving it the app folder and the views from that
 
 #now define router:
-router = routers.DefaultRouter
+router = routers.DefaultRouter()
 #default from rest framework
 
 
